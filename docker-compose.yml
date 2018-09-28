@@ -1,0 +1,22 @@
+version: "2"
+services:
+  app:
+    container_name: node-mongo-example
+    restart: always
+    build: .
+    ports:
+      - "8180:8180"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/db
+      - MONGODBTEST_URI=mongodb://mongo:27017/dbtest
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"

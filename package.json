@@ -1,0 +1,53 @@
+{
+  "name": "JobPostingsApi",
+  "version": "1.0.0",
+  "description": "Job Postings REST Api App",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "debug": "^3.1.0",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.7",
+    "passport": "^0.4.0",
+    "request": "^2.87.0",
+    "winston": "^2.4.3",
+    "express-validator": "^5.3.0",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/debug": "^0.0.30",
+    "@types/dotenv": "^4.0.3",
+    "@types/express": "^4.16.0",
+    "@types/mocha": "^5.2.5",
+    "@types/mongoose": "^5.2.3",
+    "@types/node": "^10.5.6",
+    "@types/express-validator": "^3.0.0",
+    "@types/morgan": "^1.7.35",
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "gulp-yaml": "^2.0.1",
+    "mocha": "^5.2.0",
+    "mocha-typescript": "^1.1.17",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1",
+    "nodemon": "^1.18.3"
+  },
+  "scripts": {
+    "start": "gulp build && nodemon dist/server.js",
+    "build": "gulp build",
+    "test": "mocha -t 30000 dist/tests/**/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukago/node-mongo-example.git"
+  },
+  "keywords": [],
+  "author": "Łukasz Gołębiewski <golebiewski96@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/lukago/node-mongo-example"
+}
