@@ -1,11 +1,14 @@
 import {Document, Model, model, Schema} from 'mongoose';
 
 export enum Category {
-    IT, FoodAndDrinks, Office, Courier, ShopAssistant
+    IT = 'IT',
+    FoodAndDrinks = 'Food & Drinks',
+    Office = 'Office',
+    Courier = 'Courier',
+    ShopAssistant = 'Shop assistant'
 }
 
 export interface IJobPosting extends Document {
-    id: string
     title: string;
     category: Category;
     dateStart: Date;
@@ -20,10 +23,6 @@ export interface IJobPostingModel {
 }
 
 const jobPostingSchema = new Schema({
-    id: {
-        type: String,
-        required: true
-    },
     title: {
         type: String,
         required: true
@@ -45,10 +44,6 @@ const jobPostingSchema = new Schema({
 
 jobPostingSchema.static('addJobPosting', (posting, callback) => {
     posting.save(callback);
-});
-
-jobPostingSchema.static('findById', (id, callback) => {
-    JobPosting.findOne({id: id}, callback);
 });
 
 export type JobPostingModel = Model<IJobPosting> & IJobPostingModel & IJobPosting;

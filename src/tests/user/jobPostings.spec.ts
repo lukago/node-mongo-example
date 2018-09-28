@@ -35,6 +35,7 @@ describe('Job postings REST test', () => {
         db.on('error', console.error.bind(console, 'connection error'));
         db.once('open', () => {
             console.log('Connected to db.');
+            console.log(`${test.route}/postings`);
             done();
         });
     });
@@ -67,9 +68,7 @@ describe('Job postings REST test', () => {
             .post(`${test.route}/postings`)
             .send(badreqCategory)
             .end((err, res) => {
-                res.status.should.equal(422);
-                res.body.should.be.a('object');
-                res.body.should.have.property('errors');
+                res.status.should.equal(400);
                 done();
             });
     });
@@ -79,9 +78,7 @@ describe('Job postings REST test', () => {
             .post(`${test.route}/postings`)
             .send(badreqDate)
             .end((err, res) => {
-                res.status.should.equal(422);
-                res.body.should.be.a('object');
-                res.body.should.have.property('errors');
+                res.status.should.equal(400);
                 done();
             });
     });

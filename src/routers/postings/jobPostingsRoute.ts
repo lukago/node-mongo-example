@@ -1,32 +1,31 @@
 import {Request, Response, Router} from 'express';
 
-import {IJobPosting, JobPosting} from '../../models/jobPosting';
+import {Category, IJobPosting, JobPosting} from '../../models/jobPosting';
 import {BaseRoute} from '../baseRoute';
-import * as mongoose from 'mongoose';
 
 export class JobPostingsRoute extends BaseRoute {
 
     public addJobPostingAction(router: Router): void {
         router.post('/postings', (req: Request, res: Response) => {
-            const posting = new JobPosting(JSON.parse(req.body) as IJobPosting);
-            posting.id = mongoose.Types.ObjectId().toHexString();
+            const posting = new JobPosting(req.body as IJobPosting);
+            console.log(posting);
 
-            JobPosting.findById(posting.id, (err, post) => {
-                if (err) {
-                    this.logger.error(err.toString());
-                    this.setResponse(res, 'something went wrong', 500);
-                } else {
-                    JobPosting.addJobPosting(posting, (err, jobPosting) => {
-                        if (err) {
-                            this.logger.error(err.toString());
-                            this.setResponse(res, 'something went wrong', 500);
-                        } else {
-                            this.logger.info('posting added');
-                            this.setResponse(res, 'posting added succesfully');
-                        }
-                    });
-                }
-            });
+            if (posting.dateStart.getTime() - posting.dateEnd.getTime() > 0) {
+                this.setResponse(res, 'date conflict', 400);
+            } else if (!(posting.category in Category)) {
+                this.setResponse(res, 'wrong category', 400);
+            } else {
+                JobPosting.addJobPosting(posting, (err, jobPosting) => {
+                    if (err) {
+                        this.logger.error(err.toString());
+                        this.setResponse(res, 'something went wrong', 500);
+                    } else {
+                        this.logger.info('posting added');
+                        this.setResponse(res, 'posting added succesfully');
+                    }
+                });
+            }
+
         });
     }
 
