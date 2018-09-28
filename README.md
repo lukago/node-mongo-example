@@ -39,10 +39,10 @@ Api is under {host-url}/api/v1/*. Example request path: localhost:8180/api/v1/po
 * POST /postings - adds new posting. Example request body is:
 ```javascript
 { 
-      "title": "string",
-        "category": "FoodAndDrinks",
-        "dateStart": "2012-12-12",
-        "dateEnd": "2012-12-15",
-        "companyName": "string"
+  "title": "string",
+  "category": "FoodAndDrinks",
+  "dateStart": "2012-12-12",
+  "dateEnd": "2012-12-15",
+  "companyName": "string"
 }
 ```
