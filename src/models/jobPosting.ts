@@ -1,11 +1,7 @@
 import {Document, Model, model, Schema} from 'mongoose';
 
 export enum Category {
-    IT = 'IT',
-    FoodAndDrinks = 'Food & Drinks',
-    Office = 'Office',
-    Courier = 'Courier',
-    ShopAssistant = 'Shop assistant'
+    IT, FoodAndDrinks, Office, Courier, ShopAssistant,
 }
 
 export interface IJobPosting extends Document {
